@@ -2,19 +2,13 @@ package lp2;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
  * @author Daniel Arndt Alves
  */
-public final class Janela extends JFrame {
+public final class janela extends JFrame {
 
     private JLabel jlAgencia;
     private JTextField jtfAgencia;
@@ -37,7 +31,7 @@ public final class Janela extends JFrame {
     private JButton jbAtualizar;
     private JButton jbFechar;
 
-    public Janela() {
+    public janela() {
         setSize(400, 255);
         setTitle("Linguagem de Programação II");
         setResizable(false);
@@ -155,7 +149,7 @@ public final class Janela extends JFrame {
     }
 
     public static void main(String args[]) {
-        Janela janela = new Janela();
+        janela janela = new janela();
         janela.setVisible(true);
     }
 }
