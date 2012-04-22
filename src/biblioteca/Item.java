@@ -9,6 +9,7 @@ package biblioteca;
  * @author hkom
  */
 public abstract class Item implements ItemDeBiblioteca {
+    private int codigo;
     private String titulo;
     private String autor;
     private int ano;
