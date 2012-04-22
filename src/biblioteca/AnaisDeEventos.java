@@ -72,6 +72,26 @@ public class AnaisDeEventos extends Item{
     public String toString() {
         return "AnaisDeEventos{" + "nomeDoEvento=" + nomeDoEvento + ", editora=" + editora + ", titulo=" + titulo + ", anoDePublicacao=" + anoDePublicacao + ", cidade=" + cidade + '}';
     }
+
+    @Override
+    public void estaEmprestado(Item item) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void empresta(Item item) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void devolvido(Item item) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void descricaoSumaria(Item item) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
     
 }

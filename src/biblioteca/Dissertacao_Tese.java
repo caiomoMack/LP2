@@ -66,5 +66,25 @@ public class Dissertacao_Tese extends Item{
     public String toString() {
         return "Dissertacao_Tese{" + "titulo=" + titulo + ", autor=" + autor + ", numeroDePaginas=" + numeroDePaginas + ", cidade=" + cidade + ", ano=" + ano + ", instituicao=" + instituicao + ", grau=" + grau + '}';
     }
+
+    @Override
+    public void estaEmprestado(Item item) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void empresta(Item item) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void devolvido(Item item) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void descricaoSumaria(Item item) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

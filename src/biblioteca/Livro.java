@@ -60,5 +60,25 @@ public class Livro extends Item {
         return "Livro{" + "editora=" + editora + ", numeroDePaginas=" + numeroDePaginas + ", anoDeEdicao=" + anoDeEdicao + '}';
     }
 
+    @Override
+    public void estaEmprestado(Item item) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void empresta(Item item) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void devolvido(Item item) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void descricaoSumaria(Item item) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     
 }
