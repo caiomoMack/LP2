@@ -11,7 +11,12 @@ import javax.swing.JOptionPane;
  * @author hkom
  */
 public class NovoUsuarioGUI extends javax.swing.JPanel {
+    private Usuario novoUsuario;
+    private boolean usuarioOK = false;
 
+    public boolean isUsuarioOK() {
+        return usuarioOK;
+    }
     /**
      * Creates new form NovoUsuarioGUI
      */
@@ -148,7 +153,7 @@ public class NovoUsuarioGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
-        Usuario novoUsuario;
+        
         if(txtLogin.getText().isEmpty() || txtEnd.getText().isEmpty() || txtTel.getText().isEmpty() 
                 || txtRG.getText().isEmpty())
             JOptionPane.showMessageDialog(null,"Preencha todos os campos.");
@@ -158,6 +163,8 @@ public class NovoUsuarioGUI extends javax.swing.JPanel {
         else
             novoUsuario = new Cliente(txtNome.getText(),txtEnd.getText(),Integer.parseInt(txtTel.getText()),
                     txtRG.getText(),txtLogin.getText());
+        usuarioCriado(novoUsuario);
+        
     }//GEN-LAST:event_btnCriarActionPerformed
 
     private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
@@ -179,4 +186,13 @@ public class NovoUsuarioGUI extends javax.swing.JPanel {
     private javax.swing.JTextField txtRG;
     private javax.swing.JTextField txtTel;
     // End of variables declaration//GEN-END:variables
+
+    public Usuario enviarUsuario() {        
+            return novoUsuario;
+    }
+    public void usuarioCriado(Usuario novoUsuario){
+        if(novoUsuario != null)
+            usuarioOK =  true;
+        usuarioOK = false;
+    }
 }

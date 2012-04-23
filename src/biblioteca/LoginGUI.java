@@ -146,14 +146,10 @@ public class LoginGUI extends javax.swing.JFrame {
         novoUsuario.add(novo);
         novoUsuario.setSize(600, 230);
         centralizar();
-        novoUsuario.setVisible(true);
-       // try {
-         //   telaLogin.wait();
-          //  if(novoUsuario.UsuarioCriado())
-         //       telaLogin.notify();
-       // } catch (InterruptedException ex) {
-        //    Logger.getLogger(LoginGUI.class.getName()).log(Level.SEVERE, null, ex);
-       // }
+        novoUsuario.setVisible(true);                  
+            if(novo.isUsuarioOK()){               
+                addUsuario(novo.enviarUsuario());                
+            }                                
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
