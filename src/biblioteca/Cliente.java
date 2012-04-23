@@ -11,12 +11,17 @@ package biblioteca;
 public class Cliente extends Usuario{
     final int MAX_ITENS_EMPRESTADOS = 5;
 
+    public int getMAX_ITENS_EMPRESTADOS() {
+        return MAX_ITENS_EMPRESTADOS;
+    }
     public Cliente() {
     }
 
-    public Cliente(String nome, String endereco, int telefone, String RG) {
-        super(nome, endereco, telefone, RG);
+    public Cliente(String nome, String endereco, int telefone, String RG, String login) {
+        super(nome, endereco, telefone, RG, login);
     }
+
+    
     
     
 }

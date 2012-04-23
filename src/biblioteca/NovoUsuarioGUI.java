@@ -4,6 +4,8 @@
  */
 package biblioteca;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hkom
@@ -30,13 +32,15 @@ public class NovoUsuarioGUI extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTel = new javax.swing.JTextField();
         lblEnd = new javax.swing.JLabel();
         txtEnd = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtRG = new javax.swing.JTextField();
         btnCriar = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        chkAdmin = new javax.swing.JCheckBox();
+        lblLogin = new javax.swing.JLabel();
+        txtLogin = new javax.swing.JTextField();
 
         jLabel1.setText("Nome:");
 
@@ -47,8 +51,13 @@ public class NovoUsuarioGUI extends javax.swing.JPanel {
         jLabel3.setText("RG:");
 
         btnCriar.setText("Criar");
+        btnCriar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarActionPerformed(evt);
+            }
+        });
 
-        jCheckBox1.setText("Administrador");
+        chkAdmin.setText("Administrador");
 
         javax.swing.GroupLayout PCriarUsuarioLayout = new javax.swing.GroupLayout(PCriarUsuario);
         PCriarUsuario.setLayout(PCriarUsuarioLayout);
@@ -57,12 +66,12 @@ public class NovoUsuarioGUI extends javax.swing.JPanel {
             .addGroup(PCriarUsuarioLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addGroup(PCriarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jCheckBox1)
+                    .addComponent(chkAdmin)
                     .addGroup(PCriarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(PCriarUsuarioLayout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField1))
+                            .addComponent(txtTel))
                         .addGroup(PCriarUsuarioLayout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addGap(18, 18, 18)
@@ -92,43 +101,82 @@ public class NovoUsuarioGUI extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(PCriarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PCriarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCriar, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(jCheckBox1))
+                    .addComponent(chkAdmin))
                 .addContainerGap())
         );
+
+        lblLogin.setText("Login:");
+
+        txtLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PCriarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(PCriarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(238, 238, 238)
+                        .addComponent(lblLogin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLogin)
+                    .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PCriarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
+        Usuario novoUsuario;
+        if(txtLogin.getText().isEmpty() || txtEnd.getText().isEmpty() || txtTel.getText().isEmpty() 
+                || txtRG.getText().isEmpty())
+            JOptionPane.showMessageDialog(null,"Preencha todos os campos.");
+        if(chkAdmin.isSelected())
+            novoUsuario = new Admin(txtNome.getText(),txtEnd.getText(),Integer.parseInt(txtTel.getText()),
+                    txtRG.getText(),txtLogin.getText());
+        else
+            novoUsuario = new Cliente(txtNome.getText(),txtEnd.getText(),Integer.parseInt(txtTel.getText()),
+                    txtRG.getText(),txtLogin.getText());
+    }//GEN-LAST:event_btnCriarActionPerformed
+
+    private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLoginActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PCriarUsuario;
     private javax.swing.JButton btnCriar;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox chkAdmin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblEnd;
+    private javax.swing.JLabel lblLogin;
     private javax.swing.JTextField txtEnd;
+    private javax.swing.JTextField txtLogin;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtRG;
+    private javax.swing.JTextField txtTel;
     // End of variables declaration//GEN-END:variables
 }

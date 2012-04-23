@@ -6,6 +6,8 @@ package biblioteca;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -21,7 +23,7 @@ public class LoginGUI extends javax.swing.JFrame {
     public LoginGUI() {
         initComponents();
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,13 +41,15 @@ public class LoginGUI extends javax.swing.JFrame {
         lblLogin = new javax.swing.JLabel();
         txtLogin = new javax.swing.JTextField();
         btnNovo = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnOk.setText("Ok");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
 
@@ -111,29 +115,21 @@ public class LoginGUI extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
+                .addGap(148, 148, 148)
                 .addComponent(PLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(83, Short.MAX_VALUE)
                 .addComponent(PLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addGap(82, 82, 82))
         );
 
         pack();
@@ -146,14 +142,29 @@ public class LoginGUI extends javax.swing.JFrame {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
         NovoUsuarioGUI novo = new NovoUsuarioGUI();
-        JFrame janela = new JFrame();
-        janela.add(novo);
-        janela.setSize(600, 230);
+        JFrame novoUsuario = new JFrame();
+        novoUsuario.add(novo);
+        novoUsuario.setSize(600, 230);
         centralizar();
-        janela.setVisible(true);
-        
+        novoUsuario.setVisible(true);
+       // try {
+         //   telaLogin.wait();
+          //  if(novoUsuario.UsuarioCriado())
+         //       telaLogin.notify();
+       // } catch (InterruptedException ex) {
+        //    Logger.getLogger(LoginGUI.class.getName()).log(Level.SEVERE, null, ex);
+       // }
     }//GEN-LAST:event_btnNovoActionPerformed
 
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        BibliotecaGUI novaInstancia = new BibliotecaGUI();
+        novaInstancia.setVisible(true);
+        novaInstancia.verificaAdmin(retornaUsuario());
+        telaLogin.setVisible(false);
+        
+    }//GEN-LAST:event_btnOkActionPerformed
+
+    final static LoginGUI telaLogin = new LoginGUI();
     /**
      * @param args the command line arguments
      */
@@ -188,11 +199,13 @@ public class LoginGUI extends javax.swing.JFrame {
         /*
          * Create and display the form
          */
+         
+         
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             @Override
-            public void run() {
-                new LoginGUI().setVisible(true);
+            public void run() {            
+                telaLogin.setVisible(true);
                 
             }
         });
@@ -217,12 +230,28 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnOk;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JTextField txtLogin;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
+    private Usuario listaDeUsuario[] = new Usuario[10];
+    
+    private boolean addUsuario(Usuario usuario) {
+        boolean adicionado = false;
+        if (listaDeUsuario[listaDeUsuario.length -1] != null){
+            Usuario[] listaAux = new Usuario[listaDeUsuario.length*2];            
+        listaDeUsuario = listaAux;
+        }
+        for(int i = 0; i < listaDeUsuario.length -1; i++){
+            listaDeUsuario[i] = usuario;
+            adicionado = true;
+        }
+        return adicionado;
+    
+    }
+
+    private Usuario retornaUsuario() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }

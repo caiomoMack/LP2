@@ -10,17 +10,20 @@ package biblioteca;
  */
 public abstract class Usuario {
     private String nome;
+    private String login;
     private String endereco;
     private int telefone;
     private String RG;
     private String senha;
+    boolean ADMIN = false;
     
-    public Usuario(String nome, String endereco, int telefone, String RG) {
+    public Usuario(String nome, String endereco, int telefone, String RG, String login) {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
         this.RG = RG;
         this.senha = RG;
+        this.login = login;
     }
 
     public Usuario() {
@@ -57,6 +60,14 @@ public abstract class Usuario {
     @Override
     public String toString() {
         return "Usuario{" + "nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", RG=" + RG + '}';
+    }
+
+    public boolean setSenha(String novaSenha, String senhaAntiga) {
+        if(senhaAntiga.equals(senha)){
+            senha = novaSenha;
+            return true;
+        }
+        return false;
     }
 
 }

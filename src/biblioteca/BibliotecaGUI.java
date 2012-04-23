@@ -129,10 +129,17 @@ public class BibliotecaGUI extends javax.swing.JFrame {
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new BibliotecaGUI().setVisible(true);
             }
         });
+    }
+    public boolean verificaAdmin(Usuario usuario){
+        if(usuario instanceof Admin) {            
+            return true;
+        }
+        return false;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

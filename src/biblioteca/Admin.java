@@ -9,13 +9,16 @@ package biblioteca;
  * @author hkom
  */
 public class Admin extends Usuario {
-    final boolean ADMIN = true;
+    
     public Admin() {
+        this.ADMIN = true;
     }
 
-    public Admin(String nome, String endereco, int telefone, String RG) {
-        super(nome, endereco, telefone, RG);
+    public Admin(String nome, String endereco, int telefone, String RG, String login) {
+        super(nome, endereco, telefone, RG, login);
     }
+
+    
 
     public boolean getADMIN() {
         return ADMIN;
