@@ -6,9 +6,12 @@ package biblioteca;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -23,7 +26,7 @@ public class LoginGUI extends javax.swing.JFrame {
     public LoginGUI() {
         initComponents();
     }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -141,15 +144,28 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
-        NovoUsuarioGUI novo = new NovoUsuarioGUI();
-        JFrame novoUsuario = new JFrame();
+        final NovoUsuarioGUI novo = new NovoUsuarioGUI();
+        final JFrame novoUsuario = new JFrame();
         novoUsuario.add(novo);
         novoUsuario.setSize(600, 230);
         centralizar();
-        novoUsuario.setVisible(true);                  
-            if(novo.isUsuarioOK()){               
-                addUsuario(novo.enviarUsuario());                
-            }                                
+        novoUsuario.setVisible(true);
+        novo.addPropertyChangeListener(
+                new PropertyChangeListener() {
+                    @Override
+                    public void propertyChange(PropertyChangeEvent e) {     
+                        String propertyName = e.getPropertyName();
+                        if (propertyName.equals("isUsuarioOK")){                             
+                            if (addUsuario(novo.enviarUsuario()));
+                            JOptionPane.showMessageDialog(null, "Usuário adicionado com sucesso!" 
+                                    + listaDeUsuario[0].getNome());
+                            novoUsuario.dispose();
+
+                        }
+                    }
+                });
+JOptionPane.showMessageDialog(null,"wtf");
+
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
@@ -157,10 +173,10 @@ public class LoginGUI extends javax.swing.JFrame {
         novaInstancia.setVisible(true);
         novaInstancia.verificaAdmin(retornaUsuario());
         telaLogin.setVisible(false);
-        
-    }//GEN-LAST:event_btnOkActionPerformed
 
+    }//GEN-LAST:event_btnOkActionPerformed
     final static LoginGUI telaLogin = new LoginGUI();
+
     /**
      * @param args the command line arguments
      */
@@ -195,17 +211,18 @@ public class LoginGUI extends javax.swing.JFrame {
         /*
          * Create and display the form
          */
-         
-         
+
+
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             @Override
-            public void run() {            
+            public void run() {
                 telaLogin.setVisible(true);
-                
+
             }
         });
     }
+
     private void centralizar() {
         Dimension screen =
                 Toolkit.getDefaultToolkit().getScreenSize();
@@ -232,19 +249,19 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
     private Usuario listaDeUsuario[] = new Usuario[10];
-    
+
     private boolean addUsuario(Usuario usuario) {
         boolean adicionado = false;
-        if (listaDeUsuario[listaDeUsuario.length -1] != null){
-            Usuario[] listaAux = new Usuario[listaDeUsuario.length*2];            
-        listaDeUsuario = listaAux;
+        if (listaDeUsuario[listaDeUsuario.length - 1] != null) {
+            Usuario[] listaAux = new Usuario[listaDeUsuario.length * 2];
+            listaDeUsuario = listaAux;
         }
-        for(int i = 0; i < listaDeUsuario.length -1; i++){
+        for (int i = 0; i < listaDeUsuario.length - 1; i++) {
             listaDeUsuario[i] = usuario;
             adicionado = true;
         }
         return adicionado;
-    
+
     }
 
     private Usuario retornaUsuario() {

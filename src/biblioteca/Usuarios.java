@@ -9,9 +9,16 @@ package biblioteca;
  * @author hkom
  */
 public class Usuarios {
-    private Usuario[] listaDeUsuarios = new Usuario[10];
-
-    public Usuarios() {
+    public static void main(String[] args) {
+    
+        Usuario user = new Usuario("nome", "end", 1234, "RG","login") {};
+        
+        System.out.println(user.toString());
+        System.out.println(user.toString());
+        System.out.println(user.toString().startsWith("("));
+        
+        
     }
+    
     
 }

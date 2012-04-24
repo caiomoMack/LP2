@@ -4,11 +4,14 @@
  */
 package biblioteca;
 
+import java.text.MessageFormat;
+
 /**
  *
  * @author hkom
  */
 public abstract class Usuario {
+    private int codigo;  
     private String nome;
     private String login;
     private String endereco;
@@ -59,8 +62,11 @@ public abstract class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", RG=" + RG + '}';
-    }
+        	Object[] info = {nome,login,endereco,telefone,RG};
+	String informacoes = "(nome: {0})\n(login: {1})\n(endereco: {2})\n(telefone: {3})\n(RG: {4})";
+	return MessageFormat.format(informacoes, info);
+        //return "Usuario{" + "nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", RG=" + RG + '}';
+    }    
 
     public boolean setSenha(String novaSenha, String senhaAntiga) {
         if(senhaAntiga.equals(senha)){
@@ -68,6 +74,17 @@ public abstract class Usuario {
             return true;
         }
         return false;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
 }

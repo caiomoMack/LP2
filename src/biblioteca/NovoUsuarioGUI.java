@@ -11,12 +11,14 @@ import javax.swing.JOptionPane;
  * @author hkom
  */
 public class NovoUsuarioGUI extends javax.swing.JPanel {
+
     private Usuario novoUsuario;
     private boolean usuarioOK = false;
 
     public boolean isUsuarioOK() {
         return usuarioOK;
     }
+
     /**
      * Creates new form NovoUsuarioGUI
      */
@@ -153,24 +155,26 @@ public class NovoUsuarioGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarActionPerformed
-        
-        if(txtLogin.getText().isEmpty() || txtEnd.getText().isEmpty() || txtTel.getText().isEmpty() 
-                || txtRG.getText().isEmpty())
-            JOptionPane.showMessageDialog(null,"Preencha todos os campos.");
-        if(chkAdmin.isSelected())
-            novoUsuario = new Admin(txtNome.getText(),txtEnd.getText(),Integer.parseInt(txtTel.getText()),
-                    txtRG.getText(),txtLogin.getText());
-        else
-            novoUsuario = new Cliente(txtNome.getText(),txtEnd.getText(),Integer.parseInt(txtTel.getText()),
-                    txtRG.getText(),txtLogin.getText());
-        usuarioCriado(novoUsuario);
-        
+
+        if (txtLogin.getText().isEmpty() || txtEnd.getText().isEmpty() || txtTel.getText().isEmpty()
+                || txtRG.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
+        } else {
+            if (chkAdmin.isSelected()) {
+                novoUsuario = new Admin(txtNome.getText(), txtEnd.getText(), Integer.parseInt(txtTel.getText()),
+                        txtRG.getText(), txtLogin.getText());
+            } else {
+                novoUsuario = new Cliente(txtNome.getText(), txtEnd.getText(), Integer.parseInt(txtTel.getText()),
+                        txtRG.getText(), txtLogin.getText());
+                WriteXMLFile xmlUsuarios = new WriteXMLFile(novoUsuario.getNome(), novoUsuario.getLogin(), novoUsuario.getEndereco(), novoUsuario.getTelefone(), novoUsuario.getRG());
+                this.setVisible(false);
+            }
+        }
     }//GEN-LAST:event_btnCriarActionPerformed
 
     private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLoginActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PCriarUsuario;
     private javax.swing.JButton btnCriar;
@@ -187,12 +191,17 @@ public class NovoUsuarioGUI extends javax.swing.JPanel {
     private javax.swing.JTextField txtTel;
     // End of variables declaration//GEN-END:variables
 
-    public Usuario enviarUsuario() {        
-            return novoUsuario;
+    public Usuario enviarUsuario() {
+        return novoUsuario;
     }
-    public void usuarioCriado(Usuario novoUsuario){
-        if(novoUsuario != null)
-            usuarioOK =  true;
-        usuarioOK = false;
+    public void fechar(){
+        
+    }
+    public void usuarioCriado(Usuario novoUsuario) {
+        if (novoUsuario != null) {
+            usuarioOK = true;
+        } else {
+            usuarioOK = false;
+        }
     }
 }
