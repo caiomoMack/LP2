@@ -135,12 +135,6 @@ public class BibliotecaGUI extends javax.swing.JFrame {
             }
         });
     }
-    public boolean verificaAdmin(Usuario usuario){
-        if(usuario instanceof Admin) {            
-            return true;
-        }
-        return false;
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

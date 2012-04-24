@@ -18,7 +18,11 @@ public abstract class Usuario {
     private int telefone;
     private String RG;
     private String senha;
-    boolean ADMIN = false;
+    protected  boolean ADMIN = false;
+
+    public boolean getADMIN() {
+        return ADMIN;
+    }
     
     public Usuario(String nome, String endereco, int telefone, String RG, String login) {
         this.nome = nome;
@@ -79,6 +83,7 @@ public abstract class Usuario {
     public String getLogin() {
         return login;
     }
+
     public int getCodigo() {
         return codigo;
     }

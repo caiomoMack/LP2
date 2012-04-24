@@ -11,11 +11,12 @@ package biblioteca;
 public class Usuarios {
     public static void main(String[] args) {
     
-        Usuario user = new Usuario("nome", "end", 1234, "RG","login") {};
         
-        System.out.println(user.toString());
-        System.out.println(user.toString());
-        System.out.println(user.toString().startsWith("("));
+        ReadXMLFile  test = new ReadXMLFile();
+        Usuario[] retornaUsuarios = test.retornaUsuarios();
+             
+        System.out.println(retornaUsuarios[0].getNome());
+        
         
         
     }

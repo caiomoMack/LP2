@@ -16,10 +16,12 @@ public class Admin extends Usuario {
 
     public Admin(String nome, String endereco, int telefone, String RG, String login) {
         super(nome, endereco, telefone, RG, login);
+         this.ADMIN = true;
     }
 
     
 
+    @Override
     public boolean getADMIN() {
         return ADMIN;
     }

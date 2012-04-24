@@ -20,7 +20,7 @@ import org.w3c.dom.Element;
 public class WriteXMLFile {
 
     public static final int USUARIOS = 50;
-    public static final String[] elementosUsuario = {"nome", "login", "endereco", "telefone", "RG"};
+    public static final String[] elementosUsuario = {"nome", "login", "endereco", "telefone", "RG","ADMIN"};
     private static boolean sucesso = false;
 
     public WriteXMLFile(String listaUsuario) {
@@ -89,18 +89,17 @@ public class WriteXMLFile {
     }
 
     // escreve o usuario no xml
-    public WriteXMLFile(String nome, String login, String endereco, int telefone, String RG) {
+    public WriteXMLFile(String nome, String login, String endereco, int telefone, String RG,boolean ADMIN) {
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = null;
         String nomeDoFilho[] = getNomes(USUARIOS);
-        String infoUsuario[] = new String[5];
-
+        String infoUsuario[] = new String[6];
         infoUsuario[0] = nome;
         infoUsuario[1] = login;
         infoUsuario[2] = endereco;
         infoUsuario[3] = "" + telefone;
         infoUsuario[4] = RG;
-
+        infoUsuario[5] = "" + ADMIN;
         try {
             docBuilder = docFactory.newDocumentBuilder();
         } catch (ParserConfigurationException ex) {
